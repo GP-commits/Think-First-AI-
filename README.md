@@ -1,2 +1,5 @@
-# Think-First-AI-
-Local AI chatbot  that runs locally instead of giving answer quickly it forces you to think
+Steps:
+Download ollama 
+Download The model mentioned in the .py 
+run it locally 
+thats it
