@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    pre {
+      background: #020202;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 16px;
+      overflow-x: auto;
+      margin: 12px 0;
+    }
+    code {
+      font-family: ui-monospace, monospace;
+      color: #93c5fd;
+    }
+    ul, ol { margin-left: 20px; }
+    li { margin-bottom: 6px; }
+  </style>
+</head>
+
+<body class="bg-black text-gray-200 min-h-screen flex justify-center">
+<div class="w-full max-w-4xl p-6">
+
+  <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 mb-3">
+    <p class="text-sm text-gray-400">Problem</p>
+    <p>{{ problem }}</p>
+  </div>
+
+  <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 mb-6">
+    <p class="text-sm text-gray-400">What you tried</p>
+    <p>{{ attempt }}</p>
+  </div>
+
+  {% for m in conversation %}
+    {% if m.role == "user" %}
+      <div class="text-right mb-3">
+        <div class="inline-block bg-blue-600 text-white rounded-lg px-4 py-2">
+          {{ m.content }}
+        </div>
+      </div>
+    {% else %}
+      <div class="mb-3">
+        <div class="bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 prose prose-invert max-w-none">
+          {{ m.content | safe }}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+  <form method="post" class="mt-6 bg-neutral-900 border border-neutral-800 rounded-lg p-4">
+    <textarea name="message" rows="3"
+      class="w-full bg-black border border-neutral-700 rounded-lg p-3 resize-none"
+      placeholder="Respond here..."></textarea>
+
+    <div class="flex gap-3 mt-4">
+      <button name="mode" value="guide" class="px-4 py-2 bg-neutral-700 rounded-lg">Guide</button>
+      <button name="mode" value="explain" class="px-4 py-2 bg-neutral-700 rounded-lg">Explain</button>
+      <button name="mode" value="final" class="px-4 py-2 bg-red-600 rounded-lg">Final</button>
+      <a href="/" class="ml-auto text-gray-400">← Home</a>
+    </div>
+  </form>
+
+</div>
+</body>
+</html>

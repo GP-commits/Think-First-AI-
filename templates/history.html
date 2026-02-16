@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-gray-200 min-h-screen flex justify-center">
+
+<div class="w-full max-w-4xl p-6">
+  <h1 class="text-2xl text-white mb-4">History</h1>
+
+  {% for h in history %}
+    <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 mb-4">
+      <p class="text-xs text-gray-500">{{ h.time }}</p>
+      <p><b>Problem:</b> {{ h.problem }}</p>
+      <p><b>You:</b> {{ h.user }}</p>
+      <p><b>AI:</b> {{ h.ai }}</p>
+    </div>
+  {% endfor %}
+
+  <a href="/clear_history" class="text-red-500">Clear History</a>
+</div>
+
+</body>
+</html>
